@@ -1,0 +1,22 @@
+Okay. If it's going to be a CityRPG, or something like it, I need to know
+how he programmed lots. Also, the onTrigger bricks and the baton. Might
+need to get my hands a bit dirty. Maybe the things you can do can be
+education based, for example if you get a law degree you can fight in
+lawsuits. And if you buy a baton, you can arrest people. Maybe
+degrees add a small bit to your salary. Yeah. But so if you're going
+to make this, you need a builder. That's fine. If the mod is impressive,
+they will come. We need a VERY orderly way to do this, so you don't give
+up on it. Don't. Give. Up. Before you start programming parts, know
+what you're doing. Make an isolated mod for just an economy, for example.
+Then, all you have to do is peice it together. Make numerous isolated
+mods before you start working on the actual project. Start crunching
+numbers.
+
+>>Neccisary Skills<<
+[DONE] onTrigger Bricks
+Lots
+[SORTA] Baton
+
+>>Burning Questions<<
+Lots? How do they work?
+How do I start the tick system on server start?
