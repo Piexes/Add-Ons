@@ -2,6 +2,7 @@ exec("./virus.cs");
 exec("./main.cs");
 exec("./store.cs");
 exec("./assorted.cs");
+exec("./corpseparty.cs");
 //Gamemode Ideas
 //Plague: One person is the plague-giver, and they infect people.
 //Diceroll for infection. Infection is characterized by a sneeze,
