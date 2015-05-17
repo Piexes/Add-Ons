@@ -5,41 +5,35 @@ function servercmdCP(%client)
 		return;
 	$gamemode = "corpseParty";
 }
-package corpseParty //PlayDeathAnimation
+package corpseParty
 {
-	function gameConnection::onDeath(%client, %killerPlayer, %killer, %damageType, %damageLoc)
+	function gameConnection::onDeath(%client)
 	{
 		if($gamemode $= "corpseParty")
 		{
-			//Defining variables
-			%pos = %client.player.getPosition();
-			%client.oldPlayer = %client.player;
-
-			//Creating the statue
-			%client.createPlayer(%pos); //Note: this overrides %client.player with a new value.
-
-			//Modifying the player
-			%client.player.setNodeColor("ALL", "112 112 112 1");
+			%truePlayer = %client.player;
+			%client.createPlayer(%truePlayer.getPosition());
+			%client.player.hideNode("ALL");
 			%client.player.setShapeNameDistance(0);
-
-			//Restoring the player
-			%client.player = %client.oldPlayer;
-
-			//Nullifying variables
-			%client.oldPlayer = "";
-
-			//Deleting the player
-			%client.player.delete();
+			%client.player = %truePlayer;
 		}
-		parent::onDeath(%client, %killerPlayer, %killer, %damageType, %damageLoc);
+		parent::onDeath(%client);
 	}
-	function Player::PlayDeathAnimation(%pl)
+	function player::PlayDeathAnimation(%player)
 	{
 		if($gamemode $= "corpseParty")
 		{
 			return;
 		}
-		parent::PlayDeathAnimation(%pl);
+		parent::PlayDeathAnimation(%player);
+	}
+	function Player::RemoveBody(%player)
+	{
+		if($gamemode $= "corpseParty")
+		{
+			return;
+		}
+		parent::removeBody(%player);
 	}
 };
 activatePackage(corpseParty);

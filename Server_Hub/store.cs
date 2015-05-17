@@ -1,5 +1,5 @@
 //Trails
-datablock ParticleEmitterData(TrailEmitter)
+datablock ParticleEmitterData(TrailEmitter) //It says registry failed
 {
    ejectionPeriodMS = 60;
    periodVarianceMS = 0;
