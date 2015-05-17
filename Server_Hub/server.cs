@@ -14,3 +14,7 @@ exec("./corpseparty.cs");
 //Dodgeball: Two teams, traditional sport. Life-based.
 
 //The Hidden:
+
+//Notes
+//Have the corpse party arena be in a seperate place from everything else.
+//Cuz of corpse lag.

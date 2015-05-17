@@ -115,7 +115,8 @@ package VirusGame
 	function MinigameSO::Reset(%minigame, %client)
 	{
 		parent::Reset(%minigame, %client);
-		schedule(500, 0, decidePG);
+		if($gamemode $= "Plague")
+			schedule(500, 0, decidePG);
 	}
 };
 activatePackage(VirusGame);
