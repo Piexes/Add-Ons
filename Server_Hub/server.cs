@@ -1,6 +1,7 @@
 exec("./virus.cs");
 exec("./main.cs");
 exec("./store.cs");
+exec("./haunted.cs");
 exec("./assorted.cs");
 exec("./corpseparty.cs");
 //Gamemode Ideas
