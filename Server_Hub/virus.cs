@@ -33,6 +33,7 @@ function pTransform(%client, %giver)
 	%client.player.schedule(5300,setNodeColor,"chest","0 0 0 1");
 	%client.player.schedule(6200,setNodeColor,"headskin","0 0 0 1");
 	%client.player.schedule(7000,setNodeColor,"ALL","0 0 0 1");
+	%client.player.schedule(7000,mountImage,PlagueTrailImage,$backslot);
 }
 
 //Gives a person the plague.
@@ -72,7 +73,7 @@ package VirusGame
 	function Armor::OnTrigger(%armor, %player, %slot, %value)
 	{
 		%client = %player.client;
-		if(%client.cooldown > $Sim::Time)
+		if(%client.cooldown > $Sim::Time && %client.hasPlague)
 		{
 			return;
 		}
@@ -116,7 +117,7 @@ package VirusGame
 	{
 		parent::Reset(%minigame, %client);
 		if($gamemode $= "Plague")
-		schedule(500, 0, decidePG);
+			schedule(500, 0, decidePG);
 	}
 };
 activatePackage(VirusGame);

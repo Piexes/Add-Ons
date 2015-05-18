@@ -207,12 +207,12 @@ datablock ParticleEmitterData(JewTrailEmitter)
   ejectionPeriodMS = 10;
    periodVarianceMS = 0;
    ejectionVelocity = 1;
-   ejectionOffset   = 0;
+   ejectionOffset   = 1;
    velocityVariance = 0;
-   thetaMin         = 0;
-   thetaMax         = 120;
+   thetaMin         = 89.9;
+   thetaMax         = 90.1;
    phiReferenceVel  = 0;
-   phiVariance      = 30;
+   phiVariance      = 360;
    overrideAdvance = false;
    particles = "JewTrailParticle";
    uiName = "Jew Trail";
@@ -347,5 +347,115 @@ datablock ShapeBaseImageData(LOLTrailImage)
    stateTransitionOnTimeout[2] = "loopStart";
    stateEmitterTime[2] = 1; //Emitter lifespan
    stateEmitter[2] = "LOLTrailEmitter";
+   stateTimeoutValue[2] = 1;
+};
+
+//Black Death
+datablock ParticleData(PlagueTrailParticle)
+{
+   dragCoefficient      = 0;
+   gravityCoefficient   = 0.0;
+   inheritedVelFactor   = 0.15;
+   constantAcceleration = 0.0;
+   lifetimeMS           = 1000;
+   lifetimeVarianceMS   = 0;
+   textureName          = "./Textures/blackDeath";
+   colors[0]     = "0 0 0 1";
+   sizes[0]      = 0.5;
+   sizes[1]      = 0.6;
+   times[0]      = 0.0;
+   times[1]      = 1;
+   useAlphaInv = false;
+};
+datablock ParticleEmitterData(PlagueTrailEmitter)
+{
+  ejectionPeriodMS = 10;
+   periodVarianceMS = 0;
+   ejectionVelocity = 1;
+   ejectionOffset   = 1;
+   velocityVariance = 0;
+   thetaMin         = 89.9;
+   thetaMax         = 90.1;
+   phiReferenceVel  = 0;
+   phiVariance      = 360;
+   overrideAdvance = false;
+   particles = "PlagueTrailParticle";
+   uiName = "Plague Trail";
+};
+datablock ShapeBaseImageData(PlagueTrailImage)
+{
+   shapeFile = "base/data/shapes/empty.dts";
+   emap = false;
+   mountPoint = $backslot;
+   stateName[0] = "Ready"; //This is first
+   stateTransitionOnTimeout[0] = "loopStart"; //Name of state to go to next.
+   stateTimeoutValue[0] = 0.1; //Seconds for it to go to the next part of the loop.
+
+   stateName[1] = "loopStart"; //Name of the state
+   stateTransitionOnTimeout[1] = "loopEnd"; //next state you go to
+   stateTimeoutValue[1] = 0.1; //Seconds til the next part of the loop
+   stateEmitter[1] = "PlagueTrailEmitter"; //The emitted emitter datablock here.
+   stateEmitterTime[1] = 1; //Time for the emitter to last, in seconds.
+
+   stateName[2] = "loopEnd";
+   stateWaitForTimeout[2] = 0;
+   stateTransitionOnTimeout[2] = "loopStart";
+   stateEmitterTime[2] = 1; //Emitter lifespan
+   stateEmitter[2] = "PlagueTrailEmitter";
+   stateTimeoutValue[2] = 1;
+};
+
+//Ghost Trail
+datablock ParticleData(GhostTrailParticle)
+{
+   dragCoefficient      = 0;
+   gravityCoefficient   = 0.0;
+   inheritedVelFactor   = 0.15;
+   constantAcceleration = 0.0;
+   lifetimeMS           = 1000;
+   lifetimeVarianceMS   = 0;
+   textureName          = "./Textures/ghostTrail";
+   colors[0]     = "0 0 0 1";
+   sizes[0]      = 0.5;
+   sizes[1]      = 0.6;
+   times[0]      = 0.0;
+   times[1]      = 1;
+   useAlphaInv = false;
+};
+datablock ParticleEmitterData(GhostTrailEmitter)
+{
+  ejectionPeriodMS = 10;
+   periodVarianceMS = 0;
+   ejectionVelocity = 1;
+   ejectionOffset   = 1;
+   velocityVariance = 0;
+   thetaMin         = 89.9;
+   thetaMax         = 90.1;
+   phiReferenceVel  = 0;
+   phiVariance      = 360;
+   overrideAdvance = false;
+   particles = "GhostTrailParticle";
+   uiName = "Ghost Trail";
+};
+datablock ShapeBaseImageData(GhostTrailImage)
+{
+   shapeFile = "base/data/shapes/empty.dts";
+   emap = false;
+   mountPoint = $backslot;
+   stateName[0] = "Ready"; //This is first
+   stateTransitionOnTimeout[0] = "loopStart"; //Name of state to go to next.
+   stateTimeoutValue[0] = 0.1; //Seconds for it to go to the next part of the loop.
+
+   stateName[1] = "loopStart"; //Name of the state
+   stateTransitionOnTimeout[1] = "loopEnd"; //next state you go to
+   stateTimeoutValue[1] = 0.1; //Seconds til the next part of the loop
+   stateEmitter[1] = "GhostTrailEmitter"; //The emitted emitter datablock here.
+   stateEmitterTime[1] = 1; //Time for the emitter to last, in seconds.
+
+   stateName[2] = "loopEnd";
+   stateWaitForTimeout[2] = 0;
+   stateTransitionOnTimeout[2] = "loopStart";
+   stateEmitterTime[2] = 1; //Emitter lifespan
+   stateEmitter[2] = "GhostTrailEmitter";
    stateTimeoutValue[2] = 1;
 };

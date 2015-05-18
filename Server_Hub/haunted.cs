@@ -18,6 +18,7 @@ package Haunted
 				%client.instantRespawn();
 				%client.player.setTransform(%pos);
 				%client.player.setNodeColor("ALL","1 1 1 0.4");
+				return;
 			}
 			else
 			{
@@ -26,11 +27,38 @@ package Haunted
 				%corpse.setShapeNameDistance(0);
 				%client.createPlayer(%corpse.getPosition());
 				%client.player.setNodeColor("ALL","1 1 1 0.4");
+				%client.player.mountImage(GhostTrailImage,$backslot);
+				%client.player.setMaxForwardSpeed(13);
 				return;
 			}
 		}
 		else
 			parent::onDeath(%client, %killerPlayer, %killer, %damageType, %damageLoc);
+	}
+	function armor::onTrigger(%armor, %player, %slot, %value)
+	{
+		%client = %player.client;
+		if(%slot == 0 && %client.isGhost == 1 && %client.cooldown < $Sim::Time)
+		{
+			%client.cooldown = $Sim::Time + 1;
+			initContainerRadiusSearch(%player.getPosition(),100,$Typemasks::CorpseObjectType);
+			%corpse = containerSearchNext();
+			while(%corpse = containerSearchNext())
+			{
+				%hasFoundCorpse++;
+				%client.chatMessage("\c3A corpse has been detected! You are being reborn...");
+				%client.isGhost = 0;
+				%client.player.schedule(33, delete);
+				%client.createPlayer(%corpse.getTransform());
+				%corpse.delete();
+				return;
+			}
+			if(%hasFoundCorpse == 0)
+			{
+				%client.chatMessage("\c3You have tried to ressurect yourself, but there are no corpses in the area, or you are trying to use your own corpse.");
+			}
+		}
+		parent::onTrigger(%armor, %player, %slot, %value);
 	}
 	function servercmdLight(%client)
 	{
@@ -52,8 +80,9 @@ package Haunted
 	}
 	function servercmdUpdateBodyParts(%client, %a, %b, %c, %d, %e, %f, %g, %h, %i, %j, %k, %l, %m, %body, %face)
 	{
-		if(%client.isGhost == 0)
-			parent::servercmdUpdateBodyColors(%client, %a, %b, %c, %d, %e, %f, %g, %h, %i, %j, %k, %l, %m, %body, %face);
+		if(%client.isGhost == 1)
+			return;
+		parent::servercmdUpdateBodyColors(%client, %a, %b, %c, %d, %e, %f, %g, %h, %i, %j, %k, %l, %m, %body, %face);
 	}
 };
 activatePackage(Haunted);
