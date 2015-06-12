@@ -1,2 +1,0 @@
-A remake of the MvM gamemode in tf2 for Blockland.
-Author: Piexes
